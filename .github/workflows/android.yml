@@ -36,8 +36,8 @@ jobs:
               raise SystemExit("Prediction horizon not found")
           s = s.replace(old, new, 1)
           old_loop = "for (int delay = 1; delay <= maxDelayFrames; delay++) {"
-          new_loop = "for (int delay = 1; delay <= maxDelayFrames; delay++) {"
-
+          new_loop = "for (int delay = 1; delay <= maxDelayFrames; delay = (delay == maxDelayFrames ? maxDelayFrames + 1 : std::min(delay + (maxDelayFrames > 16 ? 2 : 1), maxDelayFrames))) {"
+          
       - name: Export source for review
         run: |
           cp Predictive-Input-Buffer-Android-Port/src/main.cpp android-main-review.txt
