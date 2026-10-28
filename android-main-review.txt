@@ -402,7 +402,7 @@ public:
         int bestDelay = 0;
         int bestTicks = ticksFrame0;
 
-        for (int delay = 1; delay <= maxDelayFrames; delay++) {
+        for (int delay = 1; delay <= maxDelayFrames; delay += 2) {
             int ticks = getSurvivalTicks(pl, p1, p2, isDual, delay, push, targetHorizon);
 
             if (isWave) {
