@@ -24,7 +24,7 @@ jobs:
           sed -i 's/listenForSettingChanges("normal-ticks"/listenForSettingChanges<int64_t>("normal-ticks"/' Predictive-Input-Buffer-Android-Port/src/main.cpp
           sed -i 's/listenForSettingChanges("wave-ticks"/listenForSettingChanges<int64_t>("wave-ticks"/' Predictive-Input-Buffer-Android-Port/src/main.cpp
 
-                  - name: Optimize prediction workload
+      - name: Optimize prediction workload
         run: |
           python3 - <<'PY'
           from pathlib import Path
