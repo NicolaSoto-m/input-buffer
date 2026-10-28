@@ -39,7 +39,7 @@ jobs:
           s = s.replace(old, new, 1)
 
           old_loop = "for (int delay = 1; delay <= maxDelayFrames; delay++) {"
-          new_loop = "for (int delay = 1; delay <= maxDelayFrames; delay++) {"
+          new_loop = "for (int delay = 1; delay <= maxDelayFrames; delay += 2) {"
           if old_loop not in s:
               raise SystemExit("Delay scan loop not found")
           s = s.replace(old_loop, new_loop, 1)
