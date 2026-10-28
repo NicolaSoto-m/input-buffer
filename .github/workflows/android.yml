@@ -14,7 +14,15 @@ jobs:
 
       - name: Extract source
         run: unzip -q Predictive-Input-Buffer-Android-Port.zip -d .
+      - name: Extract source
+        run: unzip -q Predictive-Input-Buffer-Android-Port.zip -d .
 
+      - name: Fix setting listener types
+        run: |
+          sed -i 's/listenForSettingChanges("enabled"/listenForSettingChanges<bool>("enabled"/' Predictive-Input-Buffer-Android-Port/src/main.cpp
+          sed -i 's/listenForSettingChanges("normal-ticks"/listenForSettingChanges<int64_t>("normal-ticks"/' Predictive-Input-Buffer-Android-Port/src/main.cpp
+          sed -i 's/listenForSettingChanges("wave-ticks"/listenForSettingChanges<int64_t>("wave-ticks"/' Predictive-Input-Buffer-Android-Port/src/main.cpp
+          
       - name: Build Android64
         id: build
         uses: geode-sdk/build-geode-mod@main
