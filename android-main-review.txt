@@ -387,7 +387,7 @@ public:
 
         // Full Show-Trajectory lookahead for Wave (65 ticks / 50 ticks Mini Wave)
         // so it sees spikes and sawblades 1-3 blocks ahead along the diagonal path!
-        int targetHorizon = isMiniWave ? 50 : (isWave ? 65 : 160);
+        int targetHorizon = isMiniWave ? 50 : (isWave ? 65 : 80);
         int maxDelayFrames = isWave ? m_maxTicksWave : m_maxTicksNormal;
 
         // 4. Check Frame 0 (immediate input) across the full trajectory horizon
@@ -402,7 +402,7 @@ public:
         int bestDelay = 0;
         int bestTicks = ticksFrame0;
 
-        for (int delay = 1; delay <= maxDelayFrames; delay++) {
+        for (int delay = 1; delay <= maxDelayFrames; delay = (delay == maxDelayFrames ? maxDelayFrames + 1 : std::min(delay + (maxDelayFrames > 16 ? 4 : 1), maxDelayFrames))) {
             int ticks = getSurvivalTicks(pl, p1, p2, isDual, delay, push, targetHorizon);
 
             if (isWave) {
